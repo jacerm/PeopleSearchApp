@@ -1,0 +1,46 @@
+﻿<p class="componentTitle">Create a new person</p>
+
+<md-content layout-padding layout="column">
+    <md-button class="md-primary" ng-href="{{$ctrl.searchURL}}">Back to People Search</md-button>
+    <form name="personForm">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input name="firstName" required ng-model="person.FirstName">
+            <div ng-hide="personForm.firstName.$valid" ng-messages="personForm.firstName.$error">
+                <div ng-message="required">This is required!</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input name="lastName" required ng-model="person.LastName">
+            <div ng-hide="personForm.lastName.$valid" ng-messages="personForm.lastName.$error">
+                <div ng-message="required">This is required!</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Age</label>
+            <input name="age" ng-model="person.Age" ng-pattern="/^[0-9]*$/">
+            <div ng-messages="personForm.age.$error" role="alert">
+                <div ng-hide="personForm.age.$valid" ng-message="pattern" class="my-message">
+                    Age must be a valid number
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Address</label>
+            <input ng-model="person.Address">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Interests</label>
+            <input ng-model="person.Interests">
+        </md-input-container>
+        <md-radio-group ng-model="person.Picture">
+            <label>Select a Picture</label>
+            <md-radio-button ng-repeat="item in $ctrl.avatarData"
+                             ng-value="item.value">
+                <img ng-src="{{item.value}}" class="md-avatar createImg" />
+            </md-radio-button>
+        </md-radio-group>
+        <md-button ng-disabled="personForm.$valid == false" class="md-raised md-primary" ng-click="$ctrl.createPerson(person)">Submit</md-button>
+    </form>
+</md-content>

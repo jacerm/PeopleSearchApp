@@ -1,0 +1,25 @@
+﻿<p class="componentTitle">Your search ends here!</p>
+
+<md-content layout-padding layout="column">
+    <md-button class="md-primary" ng-href="{{$ctrl.createURL}}">Create Person</md-button>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label>Name</label>
+        <input ng-model="query">
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="$ctrl.submitSearch(query)">Search</md-button>
+    <md-list flex>
+        <md-subheader class="md-no-sticky">Results</md-subheader>
+        <div ng-show="$ctrl.Loading" layout="row" layout-sm="column" layout-align="space-around">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <md-list-item class="md-3-line" ng-repeat="item in $ctrl.searchResults" ng-click="null">
+            <img ng-src="{{item.Picture}}" class="md-avatar" />
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ item.FirstName }} {{item.LastName}}</h3>
+                <p ng-if="item.Age">Age: {{ item.Age }}</p>
+                <p ng-if="item.Address">Address: {{ item.Address }}</p>
+                <p ng-if="item.Interests">Interests: {{ item.Interests }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+</md-content>
