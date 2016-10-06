@@ -17,7 +17,6 @@ function PeopleSearchController($http, $timeout) {
                 console.log(response);
             },
             function (response) {
-
                 console.log(response);
             }
         );
