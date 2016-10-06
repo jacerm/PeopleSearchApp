@@ -5,16 +5,26 @@
     <form name="personForm">
         <md-input-container class="md-block" flex-gt-sm>
             <label>First Name</label>
-            <input name="firstName" required ng-model="person.FirstName">
+            <input name="firstName" required ng-pattern="/^[a-zA-Z\s]*$/" ng-model="person.FirstName">
             <div ng-messages="personForm.firstName.$error">
-                <div ng-message="required">This is required!</div>
+                <div ng-message="required">
+                    This is required!
+                </div>
+                <div ng-message="pattern" class="my-message">
+                    Alphabetical characters only!
+                </div>
             </div>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
             <label>Last Name</label>
-            <input name="lastName" required ng-model="person.LastName">
+            <input name="lastName" required ng-pattern="/^[a-zA-Z\s]*$/" ng-model="person.LastName">
             <div ng-hide="personForm.lastName.$valid" ng-messages="personForm.lastName.$error">
-                <div ng-message="required">This is required!</div>
+                <div ng-message="required">
+                    This is required!
+                </div>
+                <div ng-message="pattern" class="my-message">
+                    Alphabetical characters only!
+                </div>
             </div>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>

@@ -6,7 +6,6 @@
         <md-input-container class="md-block" flex-gt-sm>
             <label>First or Last Name</label>
             <input name="searchName" required ng-pattern="/^[a-zA-Z]*$/" ng-model="query">
-            
             <div ng-messages="searchForm.searchName.$error" role="alert">
                 <div ng-message="pattern" class="my-message">
                     First or Last Name Only!
