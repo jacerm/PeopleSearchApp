@@ -1,4 +1,4 @@
-﻿angular.module('peopleSearchApp', ['ngMaterial']).component('peopleSearch', {
+﻿angular.module('peopleSearchApp', ['ngMaterial', 'ngMessages']).component('peopleSearch', {
     templateUrl: '/Scripts/Angular/Templates/peopleSearch.html',
     controller: PeopleSearchController
 });
@@ -24,13 +24,20 @@ function PeopleSearchController($http, $timeout) {
     };
 
     ctrl.submitSearch = function (query) {
+        ctrl.noResults = false;
         ctrl.Loading = true;
         ctrl.searchResults = [];
         $http.get(baseUrl + "Search/" + query).then(
             function (response) {
                 $timeout(function () {
                     ctrl.Loading = false;
-                    ctrl.searchResults = response.data;
+                    if (response.data.length === 0) {
+                        ctrl.noResults = true;
+                    }
+                    else {
+                        ctrl.noResults = false;
+                        ctrl.searchResults = response.data;
+                    }
                 }, 3000);
                 console.log(response.data);
             },

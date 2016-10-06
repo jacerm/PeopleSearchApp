@@ -6,7 +6,7 @@
         <md-input-container class="md-block" flex-gt-sm>
             <label>First Name</label>
             <input name="firstName" required ng-model="person.FirstName">
-            <div ng-hide="personForm.firstName.$valid" ng-messages="personForm.firstName.$error">
+            <div ng-messages="personForm.firstName.$error">
                 <div ng-message="required">This is required!</div>
             </div>
         </md-input-container>
@@ -21,7 +21,7 @@
             <label>Age</label>
             <input name="age" ng-model="person.Age" ng-pattern="/^[0-9]*$/">
             <div ng-messages="personForm.age.$error" role="alert">
-                <div ng-hide="personForm.age.$valid" ng-message="pattern" class="my-message">
+                <div ng-message="pattern" class="my-message">
                     Age must be a valid number
                 </div>
             </div>

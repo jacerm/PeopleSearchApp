@@ -2,11 +2,22 @@
 
 <md-content layout-padding layout="column">
     <md-button class="md-primary" ng-href="{{$ctrl.createURL}}">Create Person</md-button>
-    <md-input-container class="md-block" flex-gt-sm>
-        <label>Name</label>
-        <input ng-model="query">
-    </md-input-container>
-    <md-button class="md-raised md-primary" ng-click="$ctrl.submitSearch(query)">Search</md-button>
+    <form name="searchForm">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>First or Last Name</label>
+            <input name="searchName" required ng-pattern="/^[a-zA-Z]*$/" ng-model="query">
+            
+            <div ng-messages="searchForm.searchName.$error" role="alert">
+                <div ng-message="pattern" class="my-message">
+                    First or Last Name Only!
+                </div>
+                <div ng-message="required">
+                    This is required!
+                </div>
+            </div>
+        </md-input-container>
+        <md-button id="submitSearch" ng-disabled="searchForm.$valid == false" class="md-raised md-primary" ng-click="$ctrl.submitSearch(query)">Search</md-button>
+    </form>
     <md-list flex>
         <md-subheader class="md-no-sticky">Results</md-subheader>
         <div ng-show="$ctrl.Loading" layout="row" layout-sm="column" layout-align="space-around">
@@ -21,5 +32,6 @@
                 <p ng-if="item.Interests">Interests: {{ item.Interests }}</p>
             </div>
         </md-list-item>
+        <p id="noResults" ng-show="$ctrl.noResults">No Results Found!</p>
     </md-list>
 </md-content>

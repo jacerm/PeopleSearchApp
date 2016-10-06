@@ -2,6 +2,15 @@
     font-family: 'Lato', serif;
 }
 
+#noResults {
+    color: rgb(221,44,0);
+    text-align: center;
+}
+
+#submitSearch {
+    width: 100%;
+}
+
 header {
     font-weight: 700;
     text-align: center;

@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using PeopleSearchApp.DAL;
 using PeopleSearchApp.Models;
-using PeopleSearchApp.ViewModels;
 
 namespace PeopleSearchApp.Controllers
 {
